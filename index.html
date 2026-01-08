@@ -1,222 +1,244 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frontend Mentor | Browser extensions manager UI</title>
     <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
+  </head>
+  <body class="dark-them">
     <header>
-        <nav>
-            <img src="./assets/images/logo.svg" alt="logo" class="logo" />
-            <button type="button" id="theme-switch-btn">
-                <img class="icon-moon" src="./assets/images/icon-moon.svg" alt="moon" />
-                <img class="icon-sun" src="./assets/images/icon-sun.svg" alt="sun" />
-            </button>
-        </nav>
+      <nav>
+        <img src="./assets/images/logo.svg" alt="logo" class="logo" />
+        <button type="button" id="theme-switch-btn">
+          <img
+            class="icon-moon"
+            src="./assets/images/icon-moon.svg"
+            alt="moon"
+          />
+          <img class="icon-sun" src="./assets/images/icon-sun.svg" alt="sun" />
+        </button>
+      </nav>
     </header>
 
     <main>
-        <section id="filter-section">
-            <p>Extensions List</p>
-            <div class="button-set">
-                <button type="button" class="selected">All</button>
-                <button type="button">Active</button>
-                <button type="button">Inactive</button>
+      <section id="filter-section">
+        <p>Extensions List</p>
+        <div class="button-set">
+          <button type="button" class="selected">All</button>
+          <button type="button">Active</button>
+          <button type="button">Inactive</button>
+        </div>
+      </section>
+
+      <section id="extensions-section">
+        <div class="card">
+          <div class="card-header">
+            <div class="logo-wrapper">
+              <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
             </div>
-        </section>
-
-        <section id="extensions-section">
-            <div class="card">
-                <div class="card-header">
-                    <div class="logo-wrapper">
-                        <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
-                    </div>
-                    <div class="content">
-                        <h3>DevLens</h3>
-                        <p>Quickly inspect page layouts and visualize element boundaries.</p>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="remove-btn">Remove</button>
-                    <div class="toggle-switch">
-                        <label class="slider-container">
-                            <input type="checkbox" class="sr-only" checked />
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
+            <div class="content">
+              <h3>DevLens</h3>
+              <p>
+                Quickly inspect page layouts and visualize element boundaries.
+              </p>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="logo-wrapper">
-                        <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
-                    </div>
-                    <div class="content">
-                        <h3>DevLens</h3>
-                        <p>Quickly inspect page layouts and visualize element boundaries.</p>
-                    </div>
-                </div>
+          </div>
 
-                <div class="card-footer">
-                    <button class="remove-btn">Remove</button>
-                    <div class="toggle-switch">
-                        <label class="slider-container">
-                            <input type="checkbox" class="sr-only" checked />
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>            <div class="card">
-                <div class="card-header">
-                    <div class="logo-wrapper">
-                        <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
-                    </div>
-                    <div class="content">
-                        <h3>DevLens</h3>
-                        <p>Quickly inspect page layouts and visualize element boundaries.</p>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="remove-btn">Remove</button>
-                    <div class="toggle-switch">
-                        <label class="slider-container">
-                            <input type="checkbox" class="sr-only" checked />
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>            <div class="card">
-                <div class="card-header">
-                    <div class="logo-wrapper">
-                        <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
-                    </div>
-                    <div class="content">
-                        <h3>DevLens</h3>
-                        <p>Quickly inspect page layouts and visualize element boundaries.</p>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="remove-btn">Remove</button>
-                    <div class="toggle-switch">
-                        <label class="slider-container">
-                            <input type="checkbox" class="sr-only" checked />
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>            <div class="card">
-                <div class="card-header">
-                    <div class="logo-wrapper">
-                        <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
-                    </div>
-                    <div class="content">
-                        <h3>DevLens</h3>
-                        <p>Quickly inspect page layouts and visualize element boundaries.</p>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="remove-btn">Remove</button>
-                    <div class="toggle-switch">
-                        <label class="slider-container">
-                            <input type="checkbox" class="sr-only" checked />
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>            <div class="card">
-                <div class="card-header">
-                    <div class="logo-wrapper">
-                        <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
-                    </div>
-                    <div class="content">
-                        <h3>DevLens</h3>
-                        <p>Quickly inspect page layouts and visualize element boundaries.</p>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="remove-btn">Remove</button>
-                    <div class="toggle-switch">
-                        <label class="slider-container">
-                            <input type="checkbox" class="sr-only" checked />
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>            <div class="card">
-                <div class="card-header">
-                    <div class="logo-wrapper">
-                        <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
-                    </div>
-                    <div class="content">
-                        <h3>DevLens</h3>
-                        <p>Quickly inspect page layouts and visualize element boundaries.</p>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="remove-btn">Remove</button>
-                    <div class="toggle-switch">
-                        <label class="slider-container">
-                            <input type="checkbox" class="sr-only" checked />
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>            <div class="card">
-                <div class="card-header">
-                    <div class="logo-wrapper">
-                        <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
-                    </div>
-                    <div class="content">
-                        <h3>DevLens</h3>
-                        <p>Quickly inspect page layouts and visualize element boundaries.</p>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="remove-btn">Remove</button>
-                    <div class="toggle-switch">
-                        <label class="slider-container">
-                            <input type="checkbox" class="sr-only" checked />
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>            <div class="card">
-                <div class="card-header">
-                    <div class="logo-wrapper">
-                        <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
-                    </div>
-                    <div class="content">
-                        <h3>DevLens</h3>
-                        <p>Quickly inspect page layouts and visualize element boundaries.</p>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="remove-btn">Remove</button>
-                    <div class="toggle-switch">
-                        <label class="slider-container">
-                            <input type="checkbox" class="sr-only" checked />
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
+          <div class="card-footer">
+            <button class="remove-btn">Remove</button>
+            <div class="toggle-switch">
+              <label class="slider-container">
+                <input type="checkbox" class="sr-only" checked />
+                <span class="slider"></span>
+              </label>
             </div>
-            </section>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="logo-wrapper">
+              <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
+            </div>
+            <div class="content">
+              <h3>DevLens</h3>
+              <p>
+                Quickly inspect page layouts and visualize element boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="remove-btn">Remove</button>
+            <div class="toggle-switch">
+              <label class="slider-container">
+                <input type="checkbox" class="sr-only" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>        <div class="card">
+          <div class="card-header">
+            <div class="logo-wrapper">
+              <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
+            </div>
+            <div class="content">
+              <h3>DevLens</h3>
+              <p>
+                Quickly inspect page layouts and visualize element boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="remove-btn">Remove</button>
+            <div class="toggle-switch">
+              <label class="slider-container">
+                <input type="checkbox" class="sr-only" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>        <div class="card">
+          <div class="card-header">
+            <div class="logo-wrapper">
+              <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
+            </div>
+            <div class="content">
+              <h3>DevLens</h3>
+              <p>
+                Quickly inspect page layouts and visualize element boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="remove-btn">Remove</button>
+            <div class="toggle-switch">
+              <label class="slider-container">
+                <input type="checkbox" class="sr-only" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>        <div class="card">
+          <div class="card-header">
+            <div class="logo-wrapper">
+              <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
+            </div>
+            <div class="content">
+              <h3>DevLens</h3>
+              <p>
+                Quickly inspect page layouts and visualize element boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="remove-btn">Remove</button>
+            <div class="toggle-switch">
+              <label class="slider-container">
+                <input type="checkbox" class="sr-only" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>        <div class="card">
+          <div class="card-header">
+            <div class="logo-wrapper">
+              <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
+            </div>
+            <div class="content">
+              <h3>DevLens</h3>
+              <p>
+                Quickly inspect page layouts and visualize element boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="remove-btn">Remove</button>
+            <div class="toggle-switch">
+              <label class="slider-container">
+                <input type="checkbox" class="sr-only" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>        <div class="card">
+          <div class="card-header">
+            <div class="logo-wrapper">
+              <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
+            </div>
+            <div class="content">
+              <h3>DevLens</h3>
+              <p>
+                Quickly inspect page layouts and visualize element boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="remove-btn">Remove</button>
+            <div class="toggle-switch">
+              <label class="slider-container">
+                <input type="checkbox" class="sr-only" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>        <div class="card">
+          <div class="card-header">
+            <div class="logo-wrapper">
+              <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
+            </div>
+            <div class="content">
+              <h3>DevLens</h3>
+              <p>
+                Quickly inspect page layouts and visualize element boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="remove-btn">Remove</button>
+            <div class="toggle-switch">
+              <label class="slider-container">
+                <input type="checkbox" class="sr-only" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>        <div class="card">
+          <div class="card-header">
+            <div class="logo-wrapper">
+              <img src="./assets/images/logo-devlens.svg" alt="Devlens Logo" />
+            </div>
+            <div class="content">
+              <h3>DevLens</h3>
+              <p>
+                Quickly inspect page layouts and visualize element boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="remove-btn">Remove</button>
+            <div class="toggle-switch">
+              <label class="slider-container">
+                <input type="checkbox" class="sr-only" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <div class="attribution">
-        Challenge by <a href="https://www.frontendmentor.io">Frontend Mentor</a>.
+      Challenge by <a href="https://www.frontendmentor.io">Frontend Mentor</a>.
     </div>
 
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>
