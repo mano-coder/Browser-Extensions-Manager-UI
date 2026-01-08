@@ -86,7 +86,7 @@ header nav {
 }
 
 #theme-switch-btn {
-  background-color: var(--bg-btn);
+  background-color: var(--Neutral-100);
   border: none;
   border-radius: 1rem;
   height: 4.5rem;
@@ -107,14 +107,17 @@ header nav {
 
 /* Filter Section */
 #filter-section {
+  display: flex;
   text-align: center;
   margin-bottom: 4rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.9rem;
 }
 
 #filter-section p {
-  font-size: 3.2rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 2rem;
 }
 
 .button-set {
@@ -140,7 +143,7 @@ header nav {
 .button-set button.selected {
   transition: background-color 0.1s ease-in-out;
   background-color: var(--Red-700);
-  color: var(--text-main);
+  color: var(--bg-card);
 }
 
 .button-set button.selected:hover {
@@ -263,6 +266,13 @@ input:checked + .slider:before {
 
 /* Responsive */
 @media (max-width: 600px) {
+  #filter-section {
+    display: block;
+  }
+  #filter-section p {
+    margin-bottom: 2rem;
+    font-size: 3.2rem;
+  }
   #extensions-section {
     grid-template-columns: 1fr;
   }
@@ -287,6 +297,6 @@ body.dark-theme #theme-switch-btn .icon-sun {
   display: block;
 }
 
-.button-set button.selected {
+body.dark-theme main .filter-section .button-set button.selected {
   color: var(--Neutral-700);
 }
