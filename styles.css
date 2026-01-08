@@ -1,0 +1,96 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "NotoSans";
+  src: url("./assets/fonts/NotoSans-VariableFont_wdth\,wght.ttf")
+    format("truetype-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  font-size: 62.5%;
+  /* Neutral Colors */
+  --Neutral-900: hsl(227, 75%, 14%);
+  --Neutral-800: hsl(226, 25%, 17%);
+  --Neutral-700: hsl(225, 23%, 24%);
+  --Neutral-600: hsl(226, 11%, 37%);
+  --Neutral-300: hsl(0, 0%, 78%);
+  --Neutral-200: hsl(217, 61%, 90%);
+  --Neutral-100: hsl(0, 0%, 93%);
+  --Neutral-0: hsl(200, 60%, 99%);
+  /* Red Color */
+  --Red-400: hsl(3, 86%, 64%);
+  --Red-500: hsl(3, 71%, 56%);
+  --Red-700: hsl(3, 77%, 44%);
+  /* Gradient */
+  --light-gradient: linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%);
+  --dark-gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+}
+
+body {
+  font-family: "NotoSans", sans-serif;
+  font-size: 1.6rem;
+  background: var(--light-gradient);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+body.dark-theme {
+  background: var(--dark-gradient);
+}
+
+body.dark-theme #theme-switch-btn .icon-moon {
+  display: none;
+}
+
+header {
+  width: 90%;
+}
+
+header nav {
+  height: auto;
+  min-height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 1rem;
+  background-color: var(--Neutral-0);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  padding: 0.5em;
+}
+
+
+/* Theme Swtich Button */
+#theme-switch-btn {
+  background-color: var(--Neutral-100);
+  border: none;
+  border-radius: 1rem;
+  height: 4.5rem;
+  width: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#theme-switch-btn .icon-sun {
+  display: none;
+}
+
+/* Footer */
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
