@@ -37,12 +37,15 @@
 body {
   font-family: "NotoSans", sans-serif;
   font-size: 1.6rem;
+  font-weight: 400;
   background: var(--light-gradient);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
   padding-top: 1rem;
+  color: var(--Neutral-900);
 }
 
 body.dark-theme {
@@ -53,7 +56,8 @@ body.dark-theme #theme-switch-btn .icon-moon {
   display: none;
 }
 
-header {
+header,
+main {
   width: 90%;
 }
 
@@ -69,7 +73,6 @@ header nav {
   padding: 0.5em;
 }
 
-
 /* Theme Swtich Button */
 #theme-switch-btn {
   background-color: var(--Neutral-100);
@@ -84,6 +87,45 @@ header nav {
 
 #theme-switch-btn .icon-sun {
   display: none;
+}
+
+/* Filter Section */
+
+#filter-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+#filter-section p {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+#filter-section button {
+  height: auto;
+  min-height: 2.3em;
+  padding: 0 1em;
+  font-family: "NotoSans", sans-serif;
+  font-size: 1.7rem;
+  border-radius: 1.5rem;
+  border: none;
+  background-color: var(--Neutral-0);
+  color: var(--Neutral-900);
+}
+
+.selected {
+  background-color: var(--Red-700) !important;
+  color: var(--Neutral-0) !important;
+}
+
+/* Extensions Section */
+#extensions-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: center;
 }
 
 /* Footer */
