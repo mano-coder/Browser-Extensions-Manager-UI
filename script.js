@@ -9,8 +9,10 @@ let allExtensions = [];
  * Initial data fetch
  */
 const getData = async () => {
+  showLoading();
   try {
     const res = await fetch("./data.json");
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     // Only set the array if it's currently empty
     if (allExtensions.length === 0) {
       allExtensions = await res.json();
@@ -19,6 +21,25 @@ const getData = async () => {
   } catch (err) {
     console.error("Error fetching data:", err);
   }
+};
+
+const showLoading = () => {
+  let skeletonHTML = "";
+  // Generate 6 placeholder cards
+  for (let i = 0; i < 6; i++) {
+    skeletonHTML += `
+      <div class="skeleton-card">
+        <div class="card-header">
+          <div class="skeleton-logo"></div>
+          <div class="content" style="width: 100%">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text" style="width: 80%"></div>
+          </div>
+        </div>
+      </div>`;
+  }
+  extensionSection.innerHTML = skeletonHTML;
 };
 
 /**
