@@ -30,12 +30,12 @@ Users should be able to:
 
 ### Screenshot
 
-![Design preview](./design/desktop-preview.jpg)
+![Design preview](./design/desktop-design-light.jpg)
 
 ### Links
 
-- Solution URL: [Your GitHub Repo URL]
-- Live Site URL: [Your GitHub Pages URL]
+- Solution URL: [[Your GitHub Repo URL](https://github.com/mano-coder/Browser-Extensions-Manager-UI)]
+- Live Site URL: [[Your GitHub Pages URL]([https://mano-coder.github.io/Advice-Generator-App/](https://mano-coder.github.io/Browser-Extensions-Manager-UI/))]
 
 ## My process
 
