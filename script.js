@@ -2,30 +2,52 @@ const themeSwitchBtn = document.getElementById("theme-switch-btn");
 const extensionSection = document.getElementById("extensions-section");
 const buttonSet = document.querySelectorAll(".button-set button");
 
-// Global state to keep track of your cards
+// Global state
 let allExtensions = [];
 
 /**
- * Initial data fetch
+ * Initialize Theme on Load
+ */
+const initTheme = () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-theme");
+  }
+};
+
+/**
+ * Initial data fetch with LocalStorage check
  */
 const getData = async () => {
   showLoading();
+  
+  // 1. Check if we have data in LocalStorage
+  const savedData = localStorage.getItem("extensions");
+  
   try {
-    const res = await fetch("./data.json");
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    // Only set the array if it's currently empty
-    if (allExtensions.length === 0) {
+    // Artificial delay for skeleton demo
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+
+    if (savedData) {
+      // 2. If saved data exists, use it
+      allExtensions = JSON.parse(savedData);
+    } else {
+      // 3. If no saved data, fetch from JSON
+      const res = await fetch("./data.json");
       allExtensions = await res.json();
+      // Save initial fetch to LocalStorage
+      localStorage.setItem("extensions", JSON.stringify(allExtensions));
     }
+    
     loadExtensions(allExtensions);
   } catch (err) {
     console.error("Error fetching data:", err);
+    extensionSection.innerHTML = `<p class="empty-msg">Error loading extensions. Please try again.</p>`;
   }
 };
 
 const showLoading = () => {
   let skeletonHTML = "";
-  // Generate 6 placeholder cards
   for (let i = 0; i < 6; i++) {
     skeletonHTML += `
       <div class="skeleton-card">
@@ -42,30 +64,18 @@ const showLoading = () => {
   extensionSection.innerHTML = skeletonHTML;
 };
 
-/**
- * Handles rendering the cards based on current filters
- */
 const loadExtensions = (data) => {
-  // 1. Identify which filter is currently active
   const selectedBtn = document.querySelector(".button-set button.selected");
   const filterType = selectedBtn ? selectedBtn.innerText : "All";
 
-  // 2. Filter the data based on the selected button
   let filteredData = [];
-  if (filterType === "All") {
-    filteredData = data;
-  } else if (filterType === "Active") {
-    filteredData = data.filter((item) => item.isActive === true);
-  } else if (filterType === "Inactive") {
-    filteredData = data.filter((item) => item.isActive === false);
-  }
+  if (filterType === "All") filteredData = data;
+  else if (filterType === "Active") filteredData = data.filter(item => item.isActive);
+  else if (filterType === "Inactive") filteredData = data.filter(item => !item.isActive);
 
-  // 3. Build the HTML string
   let extensionsEl = "";
-
   filteredData.forEach(({ logo, name, description, isActive }) => {
     const checked = isActive ? "checked" : "";
-
     extensionsEl += `
       <div class="card" data-name="${name}">
         <div class="card-header">
@@ -77,7 +87,6 @@ const loadExtensions = (data) => {
             <p>${description}</p>
           </div>
         </div>
-
         <div class="card-footer">
           <button class="remove-btn">Remove</button>
           <div class="toggle-switch">
@@ -90,7 +99,6 @@ const loadExtensions = (data) => {
       </div>`;
   });
 
-  // 4. Update the DOM
   if (filteredData.length === 0) {
     extensionSection.innerHTML = `<p class="empty-msg">No ${filterType !== "All" ? filterType.toLowerCase() : ""} extensions found.</p>`;
   } else {
@@ -102,9 +110,10 @@ const loadExtensions = (data) => {
  * Event Listeners
  */
 
-// Theme Toggle
+// Theme Toggle with Saving
 themeSwitchBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-theme");
+  const isDark = document.body.classList.toggle("dark-theme");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 
 // Filter Buttons
@@ -116,7 +125,7 @@ buttonSet.forEach((button) => {
   });
 });
 
-// Event Delegation for Card Actions (Remove & Toggle)
+// Event Delegation for Card Actions
 extensionSection.addEventListener("click", (e) => {
   // 1. Handle Checkbox Toggle
   if (e.target.type === "checkbox") {
@@ -124,31 +133,19 @@ extensionSection.addEventListener("click", (e) => {
     const nameToToggle = card.getAttribute("data-name");
     const isChecked = e.target.checked;
 
-    // Update global array state
-    allExtensions = allExtensions.map((item) => {
-      if (item.name === nameToToggle) {
-        return { ...item, isActive: isChecked };
-      }
-      return item;
-    });
-
-    // Check if we need to remove the card from current view
-    const selectedButton = document.querySelector(
-      ".button-set button.selected",
+    allExtensions = allExtensions.map((item) => 
+      item.name === nameToToggle ? { ...item, isActive: isChecked } : item
     );
-    const currentFilter = selectedButton.innerText;
+    
+    // SAVE TO LOCALSTORAGE
+    localStorage.setItem("extensions", JSON.stringify(allExtensions));
 
-    if (
-      (currentFilter === "Active" && !isChecked) ||
-      (currentFilter === "Inactive" && isChecked)
-    ) {
-      card.classList.add("removing"); // Start animation
+    const currentFilter = document.querySelector(".button-set button.selected").innerText;
+    if ((currentFilter === "Active" && !isChecked) || (currentFilter === "Inactive" && isChecked)) {
+      card.classList.add("removing");
       setTimeout(() => {
         card.remove();
-        // If the view is now empty, re-render to show the "No extensions found" message
-        if (extensionSection.querySelectorAll(".card").length === 0) {
-          loadExtensions(allExtensions);
-        }
+        if (extensionSection.querySelectorAll(".card").length === 0) loadExtensions(allExtensions);
       }, 200);
     }
   }
@@ -158,18 +155,19 @@ extensionSection.addEventListener("click", (e) => {
     const card = e.target.closest(".card");
     const nameToRemove = card.getAttribute("data-name");
 
-    // Remove from array
     allExtensions = allExtensions.filter((item) => item.name !== nameToRemove);
+    
+    // SAVE TO LOCALSTORAGE
+    localStorage.setItem("extensions", JSON.stringify(allExtensions));
 
-    // Remove from UI
-    card.remove();
-
-    // If the view is now empty, re-render to show message
-    if (extensionSection.querySelectorAll(".card").length === 0) {
-      loadExtensions(allExtensions);
-    }
+    card.classList.add("removing");
+    setTimeout(() => {
+      card.remove();
+      if (extensionSection.querySelectorAll(".card").length === 0) loadExtensions(allExtensions);
+    }, 200);
   }
 });
 
-// Initial load
+// Initialize
+initTheme();
 getData();
