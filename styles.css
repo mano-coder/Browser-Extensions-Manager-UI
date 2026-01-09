@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 @font-face {
@@ -153,7 +154,7 @@ header nav {
 #extensions-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 /* Card Styling */
@@ -266,6 +267,9 @@ input:checked + .slider:before {
 
 /* Responsive */
 @media (max-width: 600px) {
+  header nav {
+    padding: 1rem 2rem;
+  }
   #filter-section {
     display: block;
   }
@@ -287,6 +291,7 @@ body.dark-theme {
   --text-main: var(--Neutral-0);
   --border-color: var(--Neutral-300);
   --btn-color: var(--Neutral-0);
+  transition: background-color 1s ease;
 }
 
 body.dark-theme #theme-switch-btn .icon-moon {
