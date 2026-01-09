@@ -33,7 +33,7 @@
   /* Gradient */
   --light-gradient: linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%);
   --dark-gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
-  /* Light Theme Values */
+  /* Light Theme Values (Default) */
   --bg-body: var(--light-gradient);
   --bg-card: var(--Neutral-0);
   --text-main: var(--Neutral-900);
@@ -45,13 +45,34 @@
 body {
   font-family: "NotoSans", sans-serif;
   font-size: 1.6rem;
-  background: var(--light-gradient);
+  background: var(--bg-body);
   color: var(--text-main);
   padding: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4rem;
+  /* Smooth transitions for theme switching */
+  transition:
+    background 0.5s ease-in-out,
+    color 0.5s ease-in-out;
+}
+
+.dark-logo {
+  display: none;
+}
+
+/* Global transitions for surfaces */
+.card,
+header nav,
+#theme-switch-btn,
+.button-set button,
+.slider {
+  transition:
+    background-color 0.5s ease-in-out,
+    color 0.5s ease-in-out,
+    border-color 0.5s ease-in-out,
+    box-shadow 0.5s ease-in-out;
 }
 
 header,
@@ -74,14 +95,6 @@ button:focus-visible {
     0 0 0 4px var(--Red-400);
 }
 
-/* Ensure the Remove button has a clear hover/focus contrast */
-.remove-btn:hover,
-.remove-btn:focus-visible {
-  background-color: var(--Red-700);
-  border-color: var(--Red-700);
-  color: var(--Neutral-0); /* White text for better contrast */
-}
-
 /* Navbar */
 header nav {
   display: flex;
@@ -91,6 +104,7 @@ header nav {
   padding: 1.5rem 2rem;
   border-radius: 1.5rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  width: 100%;
 }
 
 #theme-switch-btn {
@@ -103,14 +117,30 @@ header nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
 }
 
 #theme-switch-btn:hover {
   background-color: var(--Neutral-300);
 }
+
+/* Smooth Icon Switching */
+#theme-switch-btn img {
+  position: absolute;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
 .icon-sun {
-  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.icon-moon {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Filter Section */
@@ -142,27 +172,29 @@ header nav {
   cursor: pointer;
   font-weight: 400;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: opacity 0.1s ease-in-out;
   color: var(--btn-color);
 }
+
 .button-set button:hover {
   opacity: 0.8;
 }
+
 .button-set button.selected {
-  transition: background-color 0.1s ease-in-out;
   background-color: var(--Red-700);
-  color: var(--bg-card);
+  color: white;
 }
 
 .button-set button.selected:hover {
   background-color: var(--Red-400);
 }
+
 /* Extensions Grid */
 #extensions-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
   gap: 2rem;
   justify-content: center;
+  width: 100%;
 }
 
 /* Card Styling */
@@ -178,16 +210,15 @@ header nav {
   gap: 2.5rem;
   transition:
     opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    margin 0.4s ease;
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* A helper class we will add via JS right before removing */
 .card.removing {
   opacity: 0;
   transform: scale(0.9) translateY(10px);
   pointer-events: none;
 }
+
 .card-header {
   display: flex;
   align-items: flex-start;
@@ -208,6 +239,7 @@ header nav {
   color: var(--text-main);
   font-size: 1.4rem;
   line-height: 1.4;
+  opacity: 0.8;
 }
 
 /* Footer Section */
@@ -224,17 +256,19 @@ header nav {
   border-radius: 5rem;
   font-weight: 400;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
   color: var(--text-main);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .remove-btn:hover {
   background-color: var(--Red-700);
   border-color: var(--Red-700);
-  color: var(--Neutral-0);
+  color: white;
 }
 
-/* Toggle Switch Logic */
+/* Toggle Switch */
 .slider-container {
   position: relative;
   display: inline-block;
@@ -257,7 +291,6 @@ header nav {
   right: 0;
   bottom: 0;
   background-color: var(--Neutral-300);
-  transition: 0.4s;
   border-radius: 34px;
 }
 
@@ -277,26 +310,21 @@ input:checked + .slider {
   background-color: var(--Red-700);
 }
 
-input:checked + .slider:hover {
-  background-color: var(--Red-500);
-}
-
 input:checked + .slider:before {
   transform: translateX(22px);
 }
 
+/* Empty State & Skeletons */
 .empty-msg {
-  grid-column: 1 / -1; /* Spans across the whole grid */
+  grid-column: 1 / -1;
   text-align: center;
   padding: 6rem 2rem;
   background: var(--bg-card);
   border-radius: 2rem;
   border: 2px dashed var(--border-color);
   color: var(--Neutral-600);
-  font-weight: 500;
 }
 
-/* Skeleton Card Styling */
 .skeleton-card {
   background-color: var(--bg-card);
   padding: 2.5rem;
@@ -306,7 +334,6 @@ input:checked + .slider:before {
   gap: 2.5rem;
 }
 
-/* Base styles for placeholder elements */
 .skeleton-logo,
 .skeleton-title,
 .skeleton-text {
@@ -316,7 +343,6 @@ input:checked + .slider:before {
   overflow: hidden;
 }
 
-/* Shimmer Effect */
 .skeleton-logo::after,
 .skeleton-title::after,
 .skeleton-text::after {
@@ -344,7 +370,6 @@ input:checked + .slider:before {
   }
 }
 
-/* Specific Placeholder Sizes */
 .skeleton-logo {
   width: 50px;
   height: 50px;
@@ -361,41 +386,56 @@ input:checked + .slider:before {
 
 /* Responsive */
 @media (max-width: 600px) {
-  header nav {
-    padding: 1rem 2rem;
-  }
   #filter-section {
-    display: block;
+    flex-direction: column;
+    gap: 2rem;
   }
   #filter-section p {
-    margin-bottom: 2rem;
-    font-size: 3.2rem;
+    font-size: 2.8rem;
   }
   #extensions-section {
     grid-template-columns: 1fr;
   }
 }
 
+/* Dark Theme Overrides */
 body.dark-theme {
-  background: var(--dark-gradient);
-  /* Dark Theme Values */
   --bg-body: var(--dark-gradient);
   --bg-card: var(--Neutral-800);
   --bg-btn: var(--Neutral-700);
   --text-main: var(--Neutral-0);
-  --border-color: var(--Neutral-300);
+  --border-color: var(--Neutral-600);
   --btn-color: var(--Neutral-0);
-  transition: background-color 1s ease;
 }
 
-body.dark-theme #theme-switch-btn .icon-moon {
-  display: none;
-}
-
-body.dark-theme #theme-switch-btn .icon-sun {
+body.dark-theme header nav .dark-logo {
   display: block;
 }
 
-body.dark-theme main .filter-section .button-set button.selected {
-  color: var(--Neutral-700);
+body.dark-theme header nav .light-logo {
+  display: none;
+}
+
+body.dark-theme .icon-sun {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.dark-theme .icon-moon {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+body.dark-theme .button-set button.selected {
+  color: var(--Neutral-800);
+  background-color: var(--Red-700);
+}
+
+.attribution {
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+.attribution a {
+  color: var(--Red-500);
+  text-decoration: none;
 }
