@@ -64,15 +64,22 @@ button:focus-visible {
   outline: 2px solid var(--Red-400);
   outline-offset: 3px;
 }
+
+/* Better focus state for the toggle slider */
 .sr-only:focus-visible + .slider {
   outline: 2px solid var(--Red-700);
   outline-offset: 4px;
+  box-shadow:
+    0 0 0 2px var(--bg-card),
+    0 0 0 4px var(--Red-400);
 }
 
-.sr-only:focus-visible + .slider {
-  box-shadow:
-    0 0 0 2px white,
-    0 0 0 4px var(--Red-700);
+/* Ensure the Remove button has a clear hover/focus contrast */
+.remove-btn:hover,
+.remove-btn:focus-visible {
+  background-color: var(--Red-700);
+  border-color: var(--Red-700);
+  color: var(--Neutral-0); /* White text for better contrast */
 }
 
 /* Navbar */
@@ -166,8 +173,18 @@ header nav {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  transition:
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    margin 0.4s ease;
 }
 
+/* A helper class we will add via JS right before removing */
+.card.removing {
+  opacity: 0;
+  transform: scale(0.9) translateY(10px);
+  pointer-events: none;
+}
 .card-header {
   display: flex;
   align-items: flex-start;
@@ -210,8 +227,8 @@ header nav {
 
 .remove-btn:hover {
   background-color: var(--Red-700);
-  color: var(--Neutral-700);
-  border: none;
+  border-color: var(--Red-700);
+  color: var(--Neutral-0);
 }
 
 /* Toggle Switch Logic */
@@ -263,6 +280,17 @@ input:checked + .slider:hover {
 
 input:checked + .slider:before {
   transform: translateX(22px);
+}
+
+.empty-msg {
+  grid-column: 1 / -1; /* Spans across the whole grid */
+  text-align: center;
+  padding: 6rem 2rem;
+  background: var(--bg-card);
+  border-radius: 2rem;
+  border: 2px dashed var(--border-color);
+  color: var(--Neutral-600);
+  font-weight: 500;
 }
 
 /* Responsive */
