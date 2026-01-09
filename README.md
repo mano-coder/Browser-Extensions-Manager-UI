@@ -1,3 +1,64 @@
+# Frontend Mentor - Browser Extensions Manager UI
+
+This is a solution to the [Browser extensions manager UI challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/browser-extensions-manager-ui-Z99S9pShM6).
+
+## Table of contents
+
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Key Features](#key-features)
+- [Author](#author)
+
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- View the optimal layout for the site depending on their device's screen size.
+- See hover and focus states for all interactive elements.
+- Toggle extensions between **Active** and **Inactive** states.
+- Filter extensions by their status (All, Active, Inactive).
+- Remove extensions from the list.
+- **Bonus**: Switch between light and dark modes with persistent memory.
+- **Bonus**: State persistence using `localStorage`.
+
+### Screenshot
+
+![Design preview](./design/desktop-preview.jpg)
+
+### Links
+
+- Solution URL: [Your GitHub Repo URL]
+- Live Site URL: [Your GitHub Pages URL]
+
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS Custom Properties (Variables)
+- Flexbox & CSS Grid (Auto-fill/MinMax logic)
+- Vanilla JavaScript (ES6+)
+- [LocalStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) for data persistence.
+
+### What I learned
+
+This project was a great way to practice **State Management** in vanilla JavaScript without a framework. I focused on:
+
+1. **Skeleton Loading Screens**: Improving Perceived Performance by showing a pulsing "shimmer" effect while data is being fetched.
+2. **Event Delegation**: Handling clicks for dynamically generated "Remove" buttons and "Toggle" switches efficiently.
+3. **Smooth Theme Transitions**: Using CSS transitions on variables to create a high-end feel when switching between light and dark modes.
+4. **Accessible UI**: Ensuring that custom checkboxes have proper `aria-labels` and focus indicators for keyboard users.
+
+```javascript
+// Example: Using LocalStorage to persist user data
+allExtensions = JSON.parse(localStorage.getItem("extensions")) || defaultData
 # Frontend Mentor - Browser extensions manager UI
 
 ![Design preview for the Browser extensions manager UI coding challenge](./preview.jpg)
@@ -18,7 +79,7 @@ You can use any tools you like to help you complete the challenge. So if you've 
 
 We provide the data for the extensions in a local `data.json` file. So you can use that to add the data dynamically if you choose.
 
-Your users should be able to: 
+Your users should be able to:
 
 - Toggle extensions between active and inactive states
 - Filter active and inactive extensions
@@ -31,9 +92,9 @@ Want some support on the challenge? [Join our community](https://www.frontendmen
 
 ## Where to find everything
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design.
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`.
 
 If you would like the Figma design file to gain experience using professional tools and build more accurate projects faster, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
 
@@ -82,12 +143,12 @@ Remember, if you're looking for feedback on your solution, be sure to ask questi
 
 There are multiple places you can share your solution:
 
-1. Share your solution page in the **#finished-projects** channel of our [community](https://www.frontendmentor.io/community). 
+1. Share your solution page in the **#finished-projects** channel of our [community](https://www.frontendmentor.io/community).
 2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
 3. Share your solution on other social channels like LinkedIn.
 4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback.
 
 The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
 
@@ -98,3 +159,5 @@ We love receiving feedback! We're always looking to improve our challenges and o
 This challenge is completely free. Please share it with anyone who will find it useful for practice.
 
 **Have fun building!** 🚀
+
+```
